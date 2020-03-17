@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_swiper/flutter_swiper.dart';
+
+// 定义入口函数
+void main() => runApp(MyApp());
+
+// 创建一个自定组件
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        //脚手架内容scoff内容
+        home: HomePage());
+  }
+}
+
+//创建自定义组件
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        //头信息
+        appBar: AppBar(
+          title: Text("图片组件的使用"),
+        ),
+        //内容信息
+        body: Container(
+            width: double.infinity,
+            child: Container(
+              width: double.infinity,
+              height: 200,
+              //child: new Image.asset("images/vue-cli.png"),
+              color: Colors.lightGreen,
+              child: SwiperPage()
+            )));
+  }
+}
+
+class SwiperPage extends StatefulWidget {
+  SwiperPage({Key key}) : super(key: key);
+
+  @override
+  _SwiperPageState createState() => _SwiperPageState();
+}
+
+class _SwiperPageState extends State<SwiperPage> {
+
+  // List<Map> imgList = [
+  //   'images/banner1.jpeg',
+  //   'images/banner2.jpeg',
+  //   'images/banner3.jpeg'
+  // ];
+
+  var imgList = [
+    'images/banner1.jpeg',
+    'images/banner2.jpeg',
+    'images/banner3.jpeg',
+    'images/banner4.jpeg',
+    'images/banner5.jpeg',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return new Swiper(
+                itemBuilder: (BuildContext context, int index) {
+                  return new Image.asset(
+                    imgList[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                itemCount: 5,
+                autoplay: true,
+                duration: 1000,
+                pagination: new SwiperPagination(),
+               // control: new SwiperControl(),
+    );
+  }
+}
